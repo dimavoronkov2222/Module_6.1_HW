@@ -1,0 +1,97 @@
+﻿<Window x:Class="Module_6._1_HW.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Module_6._1_HW"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="872" Width="1035">
+    <Grid Margin="0,0,0,-6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Football Championship Spain" FontSize="24" FontWeight="Bold" HorizontalAlignment="Left" Margin="400,10,0,20"/>
+        <StackPanel Orientation="Horizontal" Margin="20">
+            <TextBlock Text="Select Date:" VerticalAlignment="Center"/>
+            <DatePicker x:Name="datePicker" Width="150" Margin="10,0"/>
+            <Button Content="Filter Matches" Width="120" Margin="10,0" Click="DatePicker_SelectedDateChanged"/>
+        </StackPanel>
+        <DataGrid x:Name="dataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="40,10,572,469"
+                  CanUserAddRows="False" IsReadOnly="True" RenderTransformOrigin="0.5,0.5">
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.13"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.598"/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Match ID" Binding="{Binding MatchId}"/>
+                <DataGridTextColumn Header="Team 1 ID" Binding="{Binding Team1Id}"/>
+                <DataGridTextColumn Header="Team 2 ID" Binding="{Binding Team2Id}"/>
+                <DataGridTextColumn Header="Goals Team 1" Binding="{Binding GoalsTeam1}"/>
+                <DataGridTextColumn Header="Goals Team 2" Binding="{Binding GoalsTeam2}"/>
+                <DataGridTextColumn Header="Match Date" Binding="{Binding MatchDate}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1" Margin="20" Visibility="Collapsed">
+            <TextBlock Text="Team Matches Info" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+            <ComboBox x:Name="teamComboBox" Width="200" Margin="0,0,0,10"/>
+            <DataGrid x:Name="teamMatchesDataGrid" AutoGenerateColumns="False"
+                      CanUserAddRows="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="518,0,21,261" Visibility="Visible">
+            <TextBlock Text="Players Who Scored on Date" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+            <DatePicker x:Name="playersDatePicker" Width="150" Margin="0,0,0,10" RenderTransformOrigin="0.5,0.5">
+                <DatePicker.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleX="-1.762"/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0.369"/>
+                    </TransformGroup>
+                </DatePicker.RenderTransform>
+            </DatePicker>
+            <Button Content="Filter" Width="120" Click="FilterPlayersByDate"/>
+            <DataGrid x:Name="playersDataGrid" AutoGenerateColumns="True"
+          CanUserAddRows="False" IsReadOnly="True" Width="360" Height="328">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="PlayerId" Binding="{Binding PlayerId}"/>
+                    <DataGridTextColumn Header="FullName" Binding="{Binding FullName}"/>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Country}"/>
+                    <DataGridTextColumn Header="JerseyNumber" Binding="{Binding JerseyNumber}"/>
+                    <DataGridTextColumn Header="Position" Binding="{Binding Position}"/>
+                    <DataGridTextColumn Header="TeamId" Binding="{Binding TeamId}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="54,421,561,206" Visibility="Visible">
+            <TextBlock Text="Add/Edit Match Info" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Team 1 ID:" VerticalAlignment="Center"/>
+                <TextBox x:Name="team1IdTextBox" Width="100" Margin="5,0"/>
+                <TextBlock Text="Team 2 ID:" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                <TextBox x:Name="team2IdTextBox" Width="100" Margin="5,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Goals Team 1:" VerticalAlignment="Center"/>
+                <TextBox x:Name="goalsTeam1TextBox" Width="100" Margin="5,0"/>
+                <TextBlock Text="Goals Team 2:" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                <TextBox x:Name="goalsTeam2TextBox" Width="100" Margin="5,0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="Scorer ID:" VerticalAlignment="Center"/>
+                <TextBox x:Name="scorerIdTextBox" Width="100" Margin="5,0"/>
+                <TextBlock Text="Match Date:" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                <DatePicker x:Name="matchDatePicker" Width="150" Margin="5,0"/>
+            </StackPanel>
+            <Button Content="Add/Edit Match" Width="120" Click="AddEditMatch"/>
+        </StackPanel>
+        <Button Content="Delete" HorizontalAlignment="Left" Margin="565,574,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"/>
+    </Grid>
+</Window>
